@@ -1,0 +1,119 @@
+<div class="register-container">
+    <mat-card class="register-card mat-elevation-z8">
+      <mat-card-header>
+    </mat-card-header>
+    <mat-card-title class="center-text">Sign Up</mat-card-title>
+  
+      <mat-card-content >
+        <form
+          [formGroup]="sellerForm"
+          class="my-custom-form-field"
+          (submit)="collectData()"
+        >
+          <div class="formContent">
+            <div class="flexItems">
+              <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input
+                  matInput
+                  formControlName="username"
+                  type="text"
+                  placeholder="Username"
+                />
+                <mat-icon matPrefix>person</mat-icon>
+                <mat-error>{{ errorMessageUserName }}</mat-error>
+              </mat-form-field>
+    
+              <mat-form-field appearance="outline" class="flex-item">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  formControlName="email"
+                  type="email"
+                  placeholder="Email"
+                />
+                <mat-icon matPrefix>mail</mat-icon>
+                <mat-error>{{ errorMessageEmail }}</mat-error>
+              </mat-form-field>
+            </div>
+    
+            <div class="flexItems">
+              <mat-form-field appearance="outline">
+                <mat-label>Contact Number</mat-label>
+                <input
+                  matInput
+                  formControlName="contact_number"
+                  placeholder="Contact Number"
+                />
+                <mat-icon matPrefix>phone</mat-icon>
+                <mat-error>{{ errorMessageContact_number }}</mat-error>
+              </mat-form-field>
+    
+              <mat-form-field appearance="outline" class="flex-item">
+                <mat-label>Address</mat-label>
+                <input
+                  matInput
+                  formControlName="address"
+                  type="text"
+                  placeholder="Address"
+                />
+                <mat-icon matPrefix>location_on</mat-icon>
+                <mat-error>{{ errorMessageAddress }}</mat-error>
+              </mat-form-field>
+            </div>
+    
+            <div formGroupName="role_specific_details">
+                <mat-form-field appearance="outline">
+                    <mat-label>GST Number</mat-label>
+                    <input
+                      matInput
+                      formControlName="gst_no"
+                      placeholder="GST_123_p"
+                    />
+                    <mat-icon matPrefix>phone</mat-icon>
+                    <mat-error>{{ errorMessageGst_no }}</mat-error>
+                  </mat-form-field>
+            </div>
+    
+            <div class="flexItems">
+              <mat-form-field appearance="outline" class="flex-item">
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  formControlName="password"
+                  type="password"
+                  placeholder="Password"
+                />
+                <mat-icon matPrefix>key</mat-icon>
+                <mat-error>{{ errorMessagePassword }}</mat-error>
+              </mat-form-field>
+    
+              <mat-form-field appearance="outline" class="flex-item">
+                <mat-label>Confirm Password</mat-label>
+                <input
+                  matInput
+                  formControlName="confirmPassword"
+                  type="password"
+                  placeholder="Confirm Password"
+                />
+                <mat-icon matPrefix>key</mat-icon>
+                <mat-error>{{ errorMessageConfirmPassword }}</mat-error>
+              </mat-form-field>
+            </div>
+    
+            <div class="flexItems">
+              <button mat-flat-button type="submit">REGISTER</button>
+              <button mat-stroked-button type="reset" class="my-custom-button">
+                RESET
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+      <mat-card-actions class="center">
+        Already have an account?&nbsp;<a routerLink="/login" class="link">Login</a>
+      </mat-card-actions>
+    </mat-card>
+    
+  </div>
+  

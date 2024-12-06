@@ -1,0 +1,43 @@
+.register-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+  }
+  .center-text {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    justify-content: start;
+    margin-bottom: 20px;
+  }
+  
+  .formContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex:wrap;
+    gap:0.5rem;
+  }
+  
+  .flexItems{
+    display:flex;
+    gap:0.5rem;
+    // flex:wrap;
+    flex-wrap: wrap;
+    }
+  .role_specific{
+  display: flex;
+  gap:0.5rem;
+  flex-wrap: wrap;
+    
+  }
+  
+  .center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
