@@ -1,0 +1,42 @@
+.green{
+    color:green;
+    margin-right:0.5rem;
+  }
+
+ .red{
+    color:red;
+    // margin:0.5rem;
+  }
+
+  .green, .red {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  
+    &:hover {
+      transform: scale(1.3);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Adds subtle shadow
+    }
+  
+    &:active {
+      transform: scale(1.5);
+    }
+  }
+ .search-filterContainer{
+  margin-bottom: 14px;
+ }
+ .product_image{
+  width: 40px;
+  height: 40px;
+  border:1px solid green;
+  border-radius: 50%;
+}
+.table-container {
+  
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+ 
+  background-color: #529060;
+}
+.icon-star {
+  color: gold; /* Color for stars */
+  font-size: 20px; /* Adjust size */
+}

@@ -1,0 +1,117 @@
+<button mat-flat-button class="right" (click)="showModal()"> <mat-icon matPrefix> add</mat-icon> Add Category</button>
+@if(isModalVisible){
+ <app-add-category (close)="hideModal()"></app-add-category>
+}
+
+<div class="addForm-container">
+
+    <mat-card class="mat-elevation-z8">
+      <mat-card-header></mat-card-header>
+      <mat-card-title class="center-text">Add Product</mat-card-title>
+  
+      <mat-card-content>
+        <form
+          [formGroup]="productForm"
+          (ngSubmit)="collectData()"
+          class = "form-container"
+        >
+          <div class="flexItems">
+            <!-- Product Name -->
+            <mat-form-field appearance="outline">
+              <mat-label>Product Name</mat-label>
+              <input
+                matInput
+                formControlName="name"
+                type="text"
+                placeholder="Product Name"
+              />
+              <mat-icon matPrefix>label</mat-icon>
+              <mat-error>{{ getErrorMessage('name') }}</mat-error>
+            </mat-form-field>
+  
+             <!-- Category -->
+             <mat-form-field appearance="outline">
+              <mat-label>Category</mat-label>
+              <mat-select formControlName="category" (selectionChange)="onCategoryChange($event.value)">
+                  @for(category of categories; track category){
+                  <mat-option [value]="category._id">{{category.name}}</mat-option>
+                  }
+              </mat-select>
+
+              <mat-icon matPrefix>category</mat-icon>
+              <mat-error>{{ getErrorMessage('category') }}
+            </mat-error>
+            </mat-form-field>
+            </div>
+            <div class="flexItems">
+            <!-- Quantity -->
+            <mat-form-field appearance="outline">
+              <mat-label>Quantity</mat-label>
+              <input
+                matInput
+                formControlName="quantity"
+                type="number"
+                placeholder="Quantity"
+              />
+              <mat-icon matPrefix>production_quantity_limits</mat-icon>
+              <mat-error> {{ getErrorMessage('quantity') }}</mat-error>
+            </mat-form-field>
+  
+            <!-- Price -->
+            <mat-form-field appearance="outline">
+              <mat-label>Price</mat-label>
+              <input
+                matInput
+                formControlName="price"
+                type="number"
+                placeholder="Price"
+              />
+              <mat-icon matPrefix>attach_money</mat-icon>
+              <mat-error>  {{ getErrorMessage('price') }}</mat-error>
+            </mat-form-field>
+          </div>
+           
+  
+        <div class="flexItems">
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea
+              matInput
+              formControlName="description"
+              placeholder="Description"
+              rows="3"
+            ></textarea>
+            <mat-icon matPrefix>description</mat-icon>
+            <mat-error> {{ getErrorMessage('description') }}</mat-error>
+          </mat-form-field>
+
+        
+          <div>
+            <mat-label>Upload Image</mat-label>
+            <br>
+          <input type="file" (change)="onFileSelected($event)"  accept="image/*"/>
+          <input type="hidden" formControlName="imageUrl" />
+          </div>
+        
+      
+          <!-- <button mat-raised-button color="primary" (click)="uploadImage()">Upload Image</button> -->
+        </div>
+            
+  
+  
+            <!-- Submit and Reset Buttons -->
+            <div class="flexItems">
+              <button mat-flat-button type="submit" color="primary">
+                {{ _idUpdate !== '' ? 'Update Product' : 'Add Product' }}
+               </button>
+              
+              <button mat-stroked-button type="reset">
+                RESET
+              </button>
+            </div>
+          
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

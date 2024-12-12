@@ -12,7 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { Router,RouterModule } from '@angular/router';
 // import { SnackbarService } from '../../shared/services/snackbar.service';
@@ -38,8 +38,7 @@ import { Router,RouterModule } from '@angular/router';
 export class RegisterComponent {
   sellerForm: FormGroup;
 
-  flag: boolean = false;
-  totalItems = 0;
+ 
 
   constructor(
    
@@ -66,7 +65,7 @@ export class RegisterComponent {
         Validators.required,
         Validators.pattern(/^[0-9]{10}$/),
       ]),
-     role: new FormControl("Seller"),
+      role: new FormControl("Seller"),
       address: new FormControl('', [
         Validators.minLength(5),
         Validators.maxLength(50),

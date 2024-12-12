@@ -1,0 +1,93 @@
+<div class="search-filterContainer">
+  <app-searchbar (search)="filterSellers($event)"></app-searchbar>
+</div>
+
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="imageUrl">
+      <th mat-header-cell *matHeaderCellDef>Image</th>
+      <td mat-cell *matCellDef="let element">
+        <img
+          [src]="
+            element.imageUrl
+              ? element.imageUrl
+              : 'https://thumbs.dreamstime.com/b/fruit-basket-sunlit-garden-containing-peaches-plums-cherries-vibrant-colors-slightly-blurred-background-greenery-333818789.jpg?w=992'
+          "
+          alt="image"
+          class="product_image"
+        />
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Product_Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef>Category</th>
+      <td mat-cell *matCellDef="let element">{{ element.category.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Price</th>
+      <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef>Quantity</th>
+      <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+    </ng-container>
+    <ng-container matColumnDef="rating">
+      <th mat-header-cell *matHeaderCellDef>Rating</th>
+      <td mat-cell *matCellDef="let element">
+        @if(isScreenSmall){ 
+          {{element.rating}}
+          <mat-icon matPrefix class="icon-star">star</mat-icon>
+          
+        }
+        @else{
+          <ng-container *ngFor="let star of generateStars(element.rating)">
+            <mat-icon class="icon-star">{{ star }}</mat-icon>
+          </ng-container>
+        }
+       
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="availability">
+      <th mat-header-cell *matHeaderCellDef>Availability</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-slide-toggle
+          [(ngModel)]="element.availability"
+          (click)="updateProductAvailability(element._id, element.availability)"
+        ></mat-slide-toggle>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon class="green" [routerLink]="['../edit-product', element._id]"
+          >edit</mat-icon
+        >
+        <mat-icon class="red" (click)="deleteProduct(element._id)">
+          delete</mat-icon
+        >
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 15]"
+    [length]="totalItems"
+    (page)="onPageChange()"
+    [pageSize]="5"
+    showFirstLastButtons
+    aria-label="Select page of products"
+  >
+  </mat-paginator>
+</div>

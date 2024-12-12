@@ -1,0 +1,55 @@
+.addForm-container{
+  position: relative;
+  z-index: -1;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+ 
+}
+  .center-text {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    justify-content: start;
+    margin-bottom: 20px;
+  }
+.form-container{
+  padding: 1.5rem;
+}
+  .flexItems{
+    display:flex;
+    justify-content: space-between;
+    
+    flex-wrap: wrap;
+    }
+ 
+.flexItems>*{
+  width: 45%;
+}  
+  .center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .right{
+    position: relative;
+    left:85%;
+    margin-bottom: 12px;
+
+  }
+  .product_image{
+    width: 30px;
+    height: 30px;
+  }
+
+  @media only screen and (max-width: 600px) {
+
+      .flexItems>*{
+        width: 100%;
+      }
+      .right{
+        position: relative;
+        left:50%;
+        margin-bottom: 12px;
+    
+      }
+   
+  }

@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { CustomPasswordValidators } from '../../custom-validators/custom.password.validators';
+
 import {
   FormControl,
   FormGroup,
@@ -13,8 +15,9 @@ import { ILogin,IToken } from '../../../models/seller';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { merge } from 'rxjs';
+import { SnackbarService } from '../../services/sanckbar.service';
 // import { JwtHelperService } from '@auth0/angular-jwt'
 
 @Component({
@@ -37,13 +40,13 @@ export class LoginComponent {
     this.hide.set(!this.hide());
     event.stopPropagation();
   }
-  constructor(private loginService: AuthService,private router:Router) {}
+  constructor(private loginService: AuthService,private snackbar:SnackbarService,private router:Router) {}
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
-      // CustomPasswordValidators.logPatternError(),
+      CustomPasswordValidators.logPatternError(),
     ]),
   });
   get email() {
@@ -97,13 +100,15 @@ export class LoginComponent {
       const loginCredentails = this.loginForm.value;
       this.loginService.userLogin(loginCredentails).subscribe({
         next: (responseData) => {
-          console.log(responseData);
+          console.log("login",responseData);
+          this.snackbar.showSuccess('Login successfully!');
           sessionStorage.setItem('token', responseData.token); 
           sessionStorage.setItem('refreshToken', responseData.refreshToken);
            this.router.navigate(['/all-products'])
         },
         error: (err) => {
           console.error('Login error', err);
+          this.snackbar.showError('invalid credentials');
         },
         complete: () => {
           console.info();
@@ -112,7 +117,7 @@ export class LoginComponent {
     }
 
     else{
-      console.log("form invalid")
+      this.snackbar.showError("something went wrong")
     }
   }
 }

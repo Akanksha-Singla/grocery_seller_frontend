@@ -1,0 +1,15 @@
+
+<div class="search-bar">
+    
+    <input
+      [formControl]="searchControl"
+      type="text"
+      placeholder="Search..."
+    />
+    <button mat-icon-button *ngIf="searchControl.value" (click)="clearSearch()">
+      <mat-icon>clear</mat-icon>
+    </button>
+    <button mat-icon-button (click)="search.emit(searchControl.value || '')">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
